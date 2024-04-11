@@ -1,0 +1,23 @@
+-e /hyperflask/jinja-frontmatter
+-e /hyperflask/jinja-layout
+-e /hyperflask/jinja-super-macros
+-e /hyperflask/jinja-wtforms
+
+-e /hyperflask/sqlorm
+
+-e /hyperflask/flask-assets-pipeline
+-e /hyperflask/flask-babel-plus
+-e /hyperflask/flask-collections
+-e /hyperflask/flask-configurator
+-e /hyperflask/flask-file-routes
+-e /hyperflask/flask-files
+-e /hyperflask/flask-geo
+-e /hyperflask/flask-mailman-templates
+-e /hyperflask/flask-mercure-sse
+-e /hyperflask/flask-observability
+-e /hyperflask/flask-product-analytics
+-e /hyperflask/flask-sqlorm
+-e /hyperflask/flask-stream
+-e /hyperflask/flask-super-macros
+
+-e /hyperflask/hyperflask

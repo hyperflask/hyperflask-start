@@ -1,0 +1,17 @@
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ..:/workspace
+      - /home/maxime/Projets/hyperflask:/hyperflask
+    command: sleep infinity
+    environment:
+      FLASK_DRAMATIQ_BROKER_URL: redis://valkey:6379/0
+      FLASK_MAIL_SERVER: mailpit
+      FLASK_MAIL_PORT: 1025
+  valkey:
+    image: valkey/valkey
+  mailpit:
+    image: axllent/mailpit

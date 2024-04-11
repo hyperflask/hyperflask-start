@@ -1,0 +1,11 @@
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.dependencies]
+hyperflask = "^0.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+pytest-cov = "^4.1.0"
+ruff = "^0.4.3"
+hyperflask-deploy = "^0.1"

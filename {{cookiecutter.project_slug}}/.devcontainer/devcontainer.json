@@ -4,7 +4,7 @@
   "service": "app",
   "forwardPorts": [5000, 7878, 8025],
   "workspaceFolder": "/workspace",
-  "postCreateCommand": "poetry install && npm install",
+  "postCreateCommand": "uv sync && npm install",
   "features": {
     "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
   },
@@ -13,7 +13,9 @@
       "extensions": [
 				"ms-python.python",
 				"ms-python.vscode-pylance",
-        "VisualStudioExptTeam.vscodeintellicode"
+        "VisualStudioExptTeam.vscodeintellicode",
+        "hyperflask.jinjapy-language-support",
+        "hyperflask.sqlorm-language-support"
       ],
       "settings": {
 				"python.defaultInterpreterPath": "/usr/local/bin/python",

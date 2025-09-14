@@ -7,24 +7,6 @@ __pycache__/
 # C extensions
 *.so
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-
 # PyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
@@ -137,3 +119,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Hyperflask specific
+/app/assets/main.css.expanded.css
+/public/dist

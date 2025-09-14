@@ -13,7 +13,7 @@ Features:
 
 ## Usage
 
-Ensure that Python and Docker are available on your machine.
+Ensure that Docker is available on your machine.
 
 The easiest way is to use the provided script:
 

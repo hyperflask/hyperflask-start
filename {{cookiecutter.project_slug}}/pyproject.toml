@@ -3,7 +3,10 @@ name = "{{cookiecutter.project_slug}}"
 version = "0.1.0"
 requires-python = ">=3.10"
 dependencies = [
-    "hyperflask >=0.2"
+    "hyperflask >=0.2.1",
+    # the following 2 packages will be installed from git while an official release is missing
+    "flask-dramatiq",
+    "periodiq"
 ]
 
 [dependency-groups]
@@ -14,3 +17,7 @@ dev = [
     "ruff>=0.12.4",
     #"docker-web-deploy >=0.1"
 ]
+
+[tool.uv.sources]
+flask-dramatiq = { git = "https://gitlab.com/bersace/flask-dramatiq" }
+periodiq = { git = "https://gitlab.com/bersace/periodiq" }

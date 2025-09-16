@@ -122,4 +122,6 @@ Temporary Items
 
 # Hyperflask specific
 /app/assets/main.css.expanded.css
+/app/assets.json
 /public/dist
+/public/bootstrap-icons

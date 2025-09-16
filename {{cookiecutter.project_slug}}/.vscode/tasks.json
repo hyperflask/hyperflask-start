@@ -4,7 +4,7 @@
         {
             "label": "Build assets",
             "type": "shell",
-            "command": "hyperflask assets dev",
+            "command": "uv run hyperflask assets dev",
             "isBackground": true,
             "problemMatcher": {
                 "owner": "python",
@@ -16,20 +16,20 @@
                     "activeOnStart": true,
                     "beginsPattern": "^Starting with livereload enabled",
                     "endsPattern": "^\\[esbuild\\]\\[watch\\] build finished"
-                
+
                 }
             }
         },
         {
             "label": "Launch scheduler",
             "type": "shell",
-            "command": "hyperflask periodiq",
+            "command": "uv run hyperflask periodiq",
             "isBackground": true
         },
         {
             "label": "Deploy",
             "type": "shell",
-            "command": "hyperflask deploy",
+            "command": "uv run hyperflask deploy",
         }
     ]
 }

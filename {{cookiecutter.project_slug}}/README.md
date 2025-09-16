@@ -14,11 +14,11 @@ Using other editors:
 
 1. [Install devcontainers-cli](https://github.com/devcontainers/cli#npm-install)
 2. Start dev container: `devcontainer up --workspace-folder .`
-3. Launch your app: `devcontainer exec hyperflask dev`
+3. Launch your app: `devcontainer exec uv run hyperflask dev`
 3. Go to http://localhost:5000
 
 ## Deployment
 
 From inside the development container, run:
 
-    hyperflask deploy
+    uv run hyperflask deploy

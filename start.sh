@@ -7,7 +7,7 @@ main() {
     docker run --rm -it \
            -v $(pwd):/workspace \
            nikolaik/python-nodejs:python3.13-nodejs24 \
-           bash -c "cd /workspace && pip install cruft && cruft create https://github.com/hyperflask/hyperflask-start"
+           bash -c "cd /workspace && uv tool run cruft create https://github.com/hyperflask/hyperflask-start"
 }
 
 main

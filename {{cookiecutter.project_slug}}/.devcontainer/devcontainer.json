@@ -2,7 +2,7 @@
   "name": "{{cookiecutter.project_name}}",
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
-  "forwardPorts": [5000, 7878, 8025],
+  "forwardPorts": [5000, 7878],
   "workspaceFolder": "/workspace",
   "postCreateCommand": "uv sync && npm install",
   "features": {

@@ -18,6 +18,8 @@ services:
 
   mailpit: # email testing tool
     image: axllent/mailpit
+    ports:
+      - "8025:8025"
 
 # --------------------
 # REDIS INTEGRATION (for queueing, caching, etc.)

@@ -3,7 +3,7 @@ name = "{{cookiecutter.project_slug}}"
 version = "0.1.0"
 requires-python = ">=3.10"
 dependencies = [
-    "hyperflask >=0.2.1",
+    "hyperflask >=0.3.0",
     # the following 2 packages will be installed from git while an official release is missing
     "flask-dramatiq",
     "periodiq"

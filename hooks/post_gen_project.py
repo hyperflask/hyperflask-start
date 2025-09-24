@@ -6,7 +6,7 @@ def generate_secret_key():
     with open(".env", "r") as f:
         content = f.read()
     with open(".env", "w") as f:
-        content = content.replace("FLASK_SECRET_KEY=changeme", f"FLASK_SECRET_KEY='{secret_key}'")
+        content = content.replace("FLASK_SECRET_KEY=changeme", f"FLASK_SECRET_KEY={secret_key}")
         f.write(content)
 
 

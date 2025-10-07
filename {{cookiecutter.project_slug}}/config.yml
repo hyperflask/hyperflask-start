@@ -1,3 +1,4 @@
 sqlorm_uri: sqlite://database/app.db
 sqlorm_migrations_folder: "../database/migrations"
+dramatiq_broker: sqlite://database/tasks.db
 assets_tailwind: main.css

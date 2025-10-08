@@ -8,3 +8,4 @@ database
 node_modules
 tests
 .editorconfig
+_site

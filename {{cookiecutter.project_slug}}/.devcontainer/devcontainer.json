@@ -1,6 +1,7 @@
 {
   "name": "{{cookiecutter.project_name}}",
   "dockerComposeFile": "docker-compose.yml",
+  "remoteUser": "pn",
   "service": "app",
   "forwardPorts": [5000, 7878],
   "workspaceFolder": "/workspace",
@@ -21,7 +22,6 @@
 				"python.defaultInterpreterPath": "/workspace/.venv/bin/python",
         "python.testing.pytestEnabled": true
 			}
-    },
-    "remoteUser": "vscode"
+    }
   }
 }

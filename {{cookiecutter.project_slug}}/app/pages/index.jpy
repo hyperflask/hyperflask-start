@@ -1,5 +1,18 @@
 {% raw -%}
 {% use_layout %}
 
-<h1>Welcome to your HyperFlask site!</h1>
+<div class="m-auto mt-10 max-w-[800px]">
+    <{Image src="hyperflask.webp" class="rounded-xl w-full mb-6" }/>
+    <div class="prose">
+        <h1>Welcome to your Hyperflask app !</h1>
+        <p>
+            Hyperflask includes everything you need to get started with building web applications in Python.
+        </p>
+        <ul>
+            <li><a href="https://hyperflask.dev/getting-started" class="link">Check out the getting started tutorial</a></li>
+            <li><a href="https://hyperflask.dev/guides" class="link">Learn how to use Hyperflask with the guides</a></li>
+            <li><a href="https://hyperflask.dev/components" class="link">Browse all available UI components</a></li>
+        </ul>
+    </div>
+</div>
 {%- endraw %}

@@ -9,6 +9,7 @@
       "args": [
         "serve",
         "--debug",
+        "--init-db",
         "--no-debugger",
         "--no-reload"
       ],
@@ -22,6 +23,7 @@
         "enable": true,
         "pattern": [
           "**/*.py",
+          "**/*.jpy",
           "**/*.html",
         ]
       },

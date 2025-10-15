@@ -1,6 +1,6 @@
 # {{cookiecutter.project_name}}
 
-{{cookiecutter.description}}
+This is an [Hyperflask](https://hyperflask.dev) project.
 
 ## Development environment
 

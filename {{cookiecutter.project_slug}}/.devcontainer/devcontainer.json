@@ -14,13 +14,11 @@
     "vscode": {
       "extensions": [
 				"ms-python.python",
-				"ms-python.vscode-pylance",
-        "VisualStudioExptTeam.vscodeintellicode",
         "hyperflask.jinjapy-language-support",
         "hyperflask.sqlorm-language-support"
       ],
       "settings": {
-				"python.defaultInterpreterPath": "/usr/local/bin/python",
+				"python.defaultInterpreterPath": "/workspace/.venv/bin/python",
         "python.testing.pytestEnabled": true
 			}
     },

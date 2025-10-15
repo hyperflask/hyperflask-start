@@ -26,6 +26,11 @@ RUN cat >/app/Caddyfile <<EOT
     auto_https off
     admin off
     grace_period 5s
+    servers {
+        trusted_proxies static private_ranges
+        trusted_proxies_strict
+        client_ip_headers X-Real-IP Fly-Client-IP X-Forwarded-For
+    }
 }
 
 :80 {

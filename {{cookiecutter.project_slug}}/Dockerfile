@@ -8,8 +8,11 @@ RUN mkdir -p _site
 RUN uv export --frozen --no-hashes > requirements.txt
 
 FROM python:3.13-slim
+ARG EXPOSED_PORT=8080
+ENV LITESTREAM_TYPE=s3
+ENV LITESTREAM_PATH=app.db
 
-RUN apt update && apt install -y git
+RUN apt update && apt install -y git curl
 ADD . /app
 WORKDIR /app
 
@@ -33,7 +36,7 @@ RUN cat >/app/Caddyfile <<EOT
     }
 }
 
-:80 {
+:${EXPOSED_PORT} {
     root * /app/_site
 
     handle_path /static/* {
@@ -65,7 +68,7 @@ RUN --mount=type=bind,from=build,source=/app/requirements.txt,target=/tmp/requir
 RUN cat >/app/entrypoint.sh <<EOT
 #!/bin/sh
 set -e
-if [ -z "${LITESTREAM_URL}" ]; then
+if [ -z "\${LITESTREAM_BUCKET}" ] && [ ! -f /etc/litestream.yml ]; then
     hyperflask "\$@"
 else
     if [ ! -f /etc/litestream.yml ] && [ -f /app/litestream.yml ]; then
@@ -75,16 +78,27 @@ else
 dbs:
   - path: /app/database/app.db
     replica:
-      url: ${LITESTREAM_URL}
+      type: \${LITESTREAM_TYPE}
+      path: \${LITESTREAM_PATH}
+      bucket: \${LITESTREAM_BUCKET}
 EOF
+        if [ -n "\${LITESTREAM_ENDPOINT}" ]; then
+            echo "      endpoint: \${LITESTREAM_ENDPOINT}" >> /etc/litestream.yml
+        fi
+        if [ -n "\${LITESTREAM_REGION}" ]; then
+            echo "      region: \${LITESTREAM_REGION}" >> /etc/litestream.yml
+        fi
     fi
-    litestream replicate -exec "hyperflask \$@"
+    litestream replicate -exec "hyperflask \$*"
 fi
 EOT
 
 RUN chmod +x /app/entrypoint.sh
 ENTRYPOINT ["/app/entrypoint.sh"]
-CMD ["run", "--extend-procfile", "--init-db", "--host", "0.0.0.0"]
+CMD ["run", "--extend-procfile", "--init-db"]
 
 VOLUME ["/app/database", "/app/uploads", "/etc/litestream.yml"]
-EXPOSE 80
+EXPOSE ${EXPOSED_PORT}
+
+HEALTHCHECK --interval=5m --start-period=5s \
+  CMD curl -f http://localhost/healthcheck || exit 1

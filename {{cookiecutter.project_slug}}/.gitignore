@@ -125,3 +125,5 @@ Temporary Items
 /app/assets.json
 /public/dist
 /public/bootstrap-icons
+/.env
+/.env.*

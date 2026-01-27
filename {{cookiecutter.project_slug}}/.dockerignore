@@ -12,3 +12,4 @@ _site
 public/dist
 .env
 .env.*
+.studio

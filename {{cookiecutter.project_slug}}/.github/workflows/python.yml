@@ -6,15 +6,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v6
         with:
-          python-version: "3.10"
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip setuptools wheel poetry
-          poetry install
-      - name: Test with pytest
-        run: poetry run pytest tests
+          python-version-file: "pyproject.toml"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+
+      - name: Install venv
+        run: uv sync --locked --all-extras --all-groups
+
+      - name: Run tests
+        run: uv run pytest tests
+
       - name: Lint with Ruff
-        run: "poetry run ruff check || echo '::warning ::Linting failed'"
+        run: "uv run ruff check || echo '::warning ::Linting failed'"

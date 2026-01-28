@@ -58,7 +58,7 @@ Run tests using `uv run pytests tests`
 - Hyperflask aims to create component-driven apps. Do not hesitate to create as many custom components as needed. Pages should be an assembly of components.
 - Use built-in UI components as much as possible. Custom components should be used for custom interfaces and custom logic. Custom components should use built-in UI components for their interfaces
 - When the apps requires realtime updates because it has some collaboration features use server push. If you need to update different part of the apps as part of a single AJAX request (performed via htmx), use HTMX Out-of-band (OOB). Use the hyperflask-components skill to learn more.
-- Don't forget to include `{% use_layout %}` on pages (unless no layout is needed)
+- Don't forget to include {% raw %}`{% use_layout %}`{% endraw %} on pages (unless no layout is needed)
 - Don't forget to use imports in the python code of components.
 - Only define a `get()` function in components if the component needs to be fetched using htmx. If the component is meant to be rendered as part of the template and only needs to react to POST request, defining a `post()` function is enough.
 - Past the initial creation phase, always use migrations when modifying the database schema.

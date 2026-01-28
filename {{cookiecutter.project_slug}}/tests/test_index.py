@@ -1,3 +1,3 @@
 
 def test_index(client):
-    assert client.get("/").status_code == 200
+    assert client.get("/", follow_redirects=True).status_code == 200

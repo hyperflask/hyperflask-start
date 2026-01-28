@@ -6,6 +6,11 @@ import os
 APP_ROOT = os.path.join(os.path.dirname(__file__), "..")
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def app():
-    return create_app(APP_ROOT)
+    app = create_app(APP_ROOT)
+    app.config.update({
+        "TESTING": True,
+        "WTF_CSRF_ENABLED": False,
+    })
+    return app

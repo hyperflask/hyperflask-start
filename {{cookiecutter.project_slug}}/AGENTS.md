@@ -2,6 +2,8 @@ This web application is built using Hyperflask.
 
 Hyperflask is a batteries-included Flask-based framework optimized for containerized, component-driven, HTMX-based web apps with SQLORM, Tailwind, DaisyUI, asset bundling, static generation, background tasks, SSE, forms, and user management.
 
+Use hyperflask skills as needed.
+
 # Directory overview
 
 - `app/`

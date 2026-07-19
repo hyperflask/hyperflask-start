@@ -13,7 +13,7 @@ def download_agent_skills():
     import urllib.request
 
     manifest_url = "https://hyperflask.dev/agent-skills/skills.json"
-    skills_dir = ".claude/skills"
+    skills_dir = ".agents/skills"
 
     os.makedirs(skills_dir, exist_ok=True)
 

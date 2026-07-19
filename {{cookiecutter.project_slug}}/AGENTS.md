@@ -23,7 +23,7 @@ Hyperflask is a batteries-included Flask-based framework optimized for container
 
 # Useful commands
 
-- Launch dev server: `uv run hyperflask dev`
+- Launch dev server: `uv run hyperflask dev` (starts a server available at <https://localhost:5000>)
 - Run database migrations: `uv run hyperflask db migrate`
 - Install a new python package: `uv add <package-name>`
 - Use npm to install new javascript packages: `npm install <package-name>`
@@ -62,3 +62,4 @@ Run tests using `uv run pytests tests`
 - Don't forget to use imports in the python code of components.
 - Only define a `get()` function in components if the component needs to be fetched using htmx. If the component is meant to be rendered as part of the template and only needs to react to POST request, defining a `post()` function is enough.
 - Past the initial creation phase, always use migrations when modifying the database schema.
+- Never use Flask blueprints. Prefer adding new routes as "pages" in `app/pages`.

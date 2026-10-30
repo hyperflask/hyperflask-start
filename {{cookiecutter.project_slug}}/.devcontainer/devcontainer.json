@@ -5,7 +5,7 @@
   "service": "app",
   "forwardPorts": [5000, 7878],
   "workspaceFolder": "/workspace",
-  "postCreateCommand": "uv sync && npm install",
+  "postCreateCommand": "uv sync && npm install && uv run playwright install chromium",
   "features": {
     "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
       "moby": false

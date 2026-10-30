@@ -11,6 +11,9 @@ RUN apt-get -y install git procps lsb-release nano
 # Install any missing dependencies for enhanced language service
 RUN apt-get install -y libicu[0-9][0-9]
 
+# Install system dependencies required by Playwright browsers (browsers are installed in postCreateCommand)
+RUN npx -y playwright install-deps chromium
+
 RUN mkdir /workspace
 WORKDIR /workspace
 RUN pip install -U setuptools wheel pip

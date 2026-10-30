@@ -27,6 +27,7 @@ nosetests.xml
 coverage.xml
 *.cover
 .hypothesis/
+test-results/
 
 # pyenv
 .python-version

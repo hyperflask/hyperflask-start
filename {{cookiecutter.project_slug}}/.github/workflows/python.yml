@@ -20,6 +20,12 @@ jobs:
       - name: Install venv
         run: uv sync --locked --all-extras --all-groups
 
+      - name: Build assets
+        run: npm install && uv run hyperflask assets build
+
+      - name: Install Playwright browsers
+        run: uv run playwright install --with-deps chromium
+
       - name: Run tests
         run: uv run pytest tests
 

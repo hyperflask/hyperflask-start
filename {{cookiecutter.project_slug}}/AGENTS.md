@@ -50,9 +50,59 @@ If the request you are testing requires assets, remember to build them before ca
 
 You can query the database and get CSV formatted results using `echo "SELECT * FROM ..." | uv run hyperflask db query`
 
+## Testing in a browser with Playwright
+
+Playwright (Python) and Chromium are installed. Use it when `test-request` is not enough: checking the visual result, JavaScript behavior (htmx, Alpine.js, components), or multi-step user flows.
+
+1. Build the assets (see above). Without them, pages render unstyled and without JS.
+2. Start a dedicated server in the background on port 5001 (port 5000 is reserved for the user's dev server):
+   `uv run hyperflask serve --no-gunicorn --port 5001 > /tmp/server.log 2>&1 & echo $! > /tmp/server.pid`
+   Wait until `curl -s -o /dev/null http://127.0.0.1:5001/` succeeds. Restart it after modifying Python code.
+3. Take a screenshot and look at it: `uv run playwright screenshot --full-page http://127.0.0.1:5001/path /tmp/screenshot.png`
+   Use `--viewport-size "390,844"` to check the mobile layout.
+4. For interactions, write a throwaway script in `/tmp` and run it with `uv run python /tmp/check.py`:
+
+```python
+from playwright.sync_api import sync_playwright
+
+with sync_playwright() as p:
+    browser = p.chromium.launch()
+    page = browser.new_page()
+    page.on("console", lambda msg: print(f"console.{msg.type}: {msg.text}"))  # surface JS errors
+    page.goto("http://127.0.0.1:5001/")
+    page.get_by_role("link", name="Sign up").click()
+    page.get_by_label("Email").fill("test@example.com")
+    page.get_by_role("button", name="Submit").click()
+    page.wait_for_load_state("networkidle")  # let htmx requests settle
+    print(page.get_by_role("alert").inner_text())
+    page.screenshot(path="/tmp/screenshot.png", full_page=True)
+    browser.close()
+```
+
+5. Stop the server when done: `kill $(cat /tmp/server.pid)`
+
+Do not save screenshots or scripts in the project directory.
+
+## Writing tests
+
 Once you are satisfied that things are working properly, write unit tests for features that could suffer from regressions.
 Tests should use pytest and be located in `tests/`. A `client` fixture provided a Flask test client is available.
-Run tests using `uv run pytests tests`
+Run tests using `uv run pytest tests`
+
+Only write browser tests for features that depend on JavaScript or client-side behavior; prefer `client` tests otherwise.
+Browser tests use pytest-playwright: request the `page` fixture and use relative URLs. The app is served automatically by the `live_server_url` fixture (see `tests/test_browser.py`):
+
+```python
+from playwright.sync_api import Page, expect
+
+def test_signup(page: Page):
+    page.goto("/signup")
+    page.get_by_label("Email").fill("test@example.com")
+    page.get_by_role("button", name="Submit").click()
+    expect(page.get_by_role("alert")).to_contain_text("Welcome")
+```
+
+Use `uv run pytest tests --tracing retain-on-failure` to keep a trace of failing browser tests in `test-results/`.
 
 # Best practices
 

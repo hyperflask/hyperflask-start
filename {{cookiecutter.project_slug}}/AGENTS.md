@@ -2,7 +2,7 @@ This web application is built using Hyperflask.
 
 Hyperflask is a batteries-included Flask-based framework optimized for containerized, component-driven, HTMX-based web apps with SQLORM, Tailwind, DaisyUI, asset bundling, static generation, background tasks, SSE, forms, and user management.
 
-Use hyperflask skills as needed.
+Use the hyperflask skill as needed. Its references contain the full Hyperflask documentation.
 
 # Directory overview
 
@@ -109,7 +109,7 @@ Use `uv run pytest tests --tracing retain-on-failure` to keep a trace of failing
 - Focus on implementing business logic of the app. Do not try to re-create features provided by the framework.
 - Hyperflask aims to create component-driven apps. Do not hesitate to create as many custom components as needed. Pages should be an assembly of components.
 - Use built-in UI components as much as possible. Custom components should be used for custom interfaces and custom logic. Custom components should use built-in UI components for their interfaces
-- When the apps requires realtime updates because it has some collaboration features use server push. If you need to update different part of the apps as part of a single AJAX request (performed via htmx), use HTMX Out-of-band (OOB). Use the hyperflask-components skill to learn more.
+- When the apps requires realtime updates because it has some collaboration features use server push. If you need to update different part of the apps as part of a single AJAX request (performed via htmx), use HTMX Out-of-band (OOB). Read the interactive apps and server push references of the hyperflask skill to learn more.
 - Don't forget to include {% raw %}`{% use_layout %}`{% endraw %} on pages (unless no layout is needed)
 - Don't forget to use imports in the python code of components.
 - Only define a `get()` function in components if the component needs to be fetched using htmx. If the component is meant to be rendered as part of the template and only needs to react to POST request, defining a `post()` function is enough.

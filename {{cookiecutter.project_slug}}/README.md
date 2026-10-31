@@ -31,3 +31,15 @@ Your credentials and settings are shared with the host: {{ agent_dirs }} are mou
 On macOS, Claude Code stores credentials in the Keychain, so you will need to log in once inside the container.
 {%- endif %}
 {%- endif %}
+
+## Updating from the template
+
+This project was generated from [hyperflask-start](https://github.com/hyperflask/hyperflask-start) using [cruft](https://cruft.github.io/cruft/). The template version it is based on is tracked in `.cruft.json`.
+
+To pull the latest template improvements into this project, commit or stash your changes first, then run (from inside the dev container or anywhere [uv](https://docs.astral.sh/uv/) is installed):
+
+    uvx cruft check   # check if the project is up to date with the template
+    uvx cruft diff    # show the differences between the project and the template
+    uvx cruft update  # apply the latest template changes
+
+`cruft update` shows you the changes before applying them. Changes that conflict with your own modifications are left as conflict markers or `.rej` files that you need to resolve manually. Review the result with `git diff` and commit it.

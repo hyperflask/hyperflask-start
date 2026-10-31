@@ -39,7 +39,17 @@ RUN cat >/app/Caddyfile <<EOT
 :${EXPOSED_PORT} {
     root * /app/_site
 
+    @hashed path_regexp ^/static/dist/.+-([A-Z2-7]{8}|[0-9a-f]{10})\.[^/]+\$
+    header @hashed Cache-Control "public, max-age=31536000, immutable"
+
+    @unhashed {
+        path /static/*
+        not path_regexp ^/static/dist/.+-([A-Z2-7]{8}|[0-9a-f]{10})\.[^/]+\$
+    }
+    header @unhashed Cache-Control "no-cache"
+
     handle_path /static/* {
+        encode zstd gzip
         file_server {
             root /app/public
         }
@@ -50,6 +60,7 @@ RUN cat >/app/Caddyfile <<EOT
     }
 
     handle {
+        encode zstd gzip
         file_server {
             pass_thru
         }

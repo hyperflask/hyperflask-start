@@ -17,6 +17,11 @@ RUN npx -y playwright install-deps chromium
 RUN mkdir /workspace
 WORKDIR /workspace
 RUN pip install -U setuptools wheel pip
+{%- if cookiecutter.agent == "opencode" %}
+
+# Create the parents of the agent credentials mounts so docker does not create them as root
+RUN mkdir -p /home/pn/.config /home/pn/.local/share && chown -R pn:pn /home/pn/.config /home/pn/.local
+{%- endif %}
 
 # Set the default shell to bash rather than sh
 ENV SHELL /bin/bash

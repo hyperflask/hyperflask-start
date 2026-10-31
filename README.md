@@ -6,6 +6,7 @@ Features:
 
  - Hyperflask app based on recommended best practices
  - Dev environment based on [Development Containers](https://containers.dev/)
+ - Coding agent of your choice (Claude Code, Codex or OpenCode) installed in the dev container, using your existing credentials
  - Useful dotfiles to start with
  - Optimized for VScode with breakpoint debugging for frontend and backend
  - [Mailpit](https://github.com/axllent/mailpit) for email testing

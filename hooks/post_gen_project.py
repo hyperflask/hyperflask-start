@@ -11,7 +11,7 @@ def generate_secret_key():
 def install_skill(source, skill):
     try:
         subprocess.run(
-            ["npx", "-y", "skills", "add", source, "--skill", skill, "-y"],
+            ["npx", "-y", "skills", "add", source, "--skill", skill, "--agent", "universal", "-y"],
             check=True,
         )
     except Exception as e:

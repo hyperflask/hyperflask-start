@@ -6,10 +6,24 @@
   "forwardPorts": [5000, 7878],
   "workspaceFolder": "/workspace",
   "postCreateCommand": "uv sync && npm install && uv run playwright install chromium",
+{%- if cookiecutter.agent == "claude" %}
+  "initializeCommand": "mkdir -p ~/.claude && touch ~/.claude.json",
+{%- elif cookiecutter.agent == "codex" %}
+  "initializeCommand": "mkdir -p ~/.codex",
+{%- elif cookiecutter.agent == "opencode" %}
+  "initializeCommand": "mkdir -p ~/.config/opencode ~/.local/share/opencode",
+{%- endif %}
   "features": {
     "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
       "moby": false
     }
+{%- if cookiecutter.agent == "claude" %},
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1": {}
+{%- elif cookiecutter.agent == "codex" %},
+    "ghcr.io/jsburckhardt/devcontainer-features/codex:1": {}
+{%- elif cookiecutter.agent == "opencode" %},
+    "ghcr.io/jsburckhardt/devcontainer-features/opencode:1": {}
+{%- endif %}
   },
   "customizations": {
     "vscode": {

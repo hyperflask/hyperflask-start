@@ -5,6 +5,18 @@ services:
       dockerfile: .devcontainer/Dockerfile
     volumes:
       - ..:/workspace
+{%- if cookiecutter.agent == "claude" %}
+      # Claude Code credentials and settings from the host
+      - ${HOME}/.claude:/home/pn/.claude
+      - ${HOME}/.claude.json:/home/pn/.claude.json
+{%- elif cookiecutter.agent == "codex" %}
+      # Codex credentials and settings from the host
+      - ${HOME}/.codex:/home/pn/.codex
+{%- elif cookiecutter.agent == "opencode" %}
+      # OpenCode credentials and settings from the host
+      - ${HOME}/.config/opencode:/home/pn/.config/opencode
+      - ${HOME}/.local/share/opencode:/home/pn/.local/share/opencode
+{%- endif %}
     command: sleep infinity
     environment:
       FLASK_MAIL_BACKEND: smtp

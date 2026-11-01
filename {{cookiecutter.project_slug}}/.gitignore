@@ -122,10 +122,12 @@ Temporary Items
 .apdisk
 
 # Hyperflask specific
+/.devcontainer/devcontainer-lock.json
 /app/assets/main.css.expanded.css
 /app/assets.json
 /public/dist
 /public/bootstrap-icons
+/database
 /.env
 /.env.*
 /.studio
